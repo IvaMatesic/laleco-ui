@@ -1,4 +1,4 @@
-import {Component, signal} from '@angular/core';
+import {Component, HostListener, signal} from '@angular/core';
 import {WordTranslationService} from '../services/word-translation.service';
 import {WordTranslation} from '../models/word-translation.model';
 import {
@@ -28,6 +28,15 @@ export class WordTranslationListComponent {
   currentWordIndex = signal(0);
 
   constructor(private wordTranslationService: WordTranslationService) {
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  handleKeyDown(event: KeyboardEvent): void {
+    if (event.key === 'ArrowRight') {
+      console.log('emit next word:'+event.key)
+      if(this.translationList().length>0)
+      this.goToNextWord();
+    }
   }
 
   fetchTranslationsClicked() {
