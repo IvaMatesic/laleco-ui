@@ -1,1 +1,6 @@
-<p>word: {{wordTranslation()?.word}},   translation: {{wordTranslation()?.translation}}</p>
+@if (selectedMode() == TranslationMode.TRANSLATION_TO_FOREIGN_WORD){
+  <p>translation: {{wordTranslation()?.translation}},   word: {{wordTranslation()?.word}}</p>
+}@else {
+  <p>word: {{wordTranslation()?.word}},   translation: {{wordTranslation()?.translation}}</p>
+}
+
