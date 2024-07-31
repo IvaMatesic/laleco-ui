@@ -1,0 +1,6 @@
+
+<button (click)="fetchTranslationsClicked()">Fetch translations</button>
+
+@for (item of translationList(); track item) {
+  <app-single-word-translation-view [wordTranslation]="item"/>
+}
