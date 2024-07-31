@@ -1,11 +1,18 @@
-
 <button (click)="fetchTranslationsClicked()">Fetch translations</button>
 
 <form>
-  <input type="radio" [value]="TranslationMode.TRANSLATION_TO_FOREIGN_WORD" name="radio" [ngModel]="selectedMode()" (ngModelChange)="selectedMode.set($event);"/> English -> Foreign language
-  <input type="radio" [value]="TranslationMode.FOREIGN_WORD_TO_TRANSLATION" name="radio" [ngModel]="selectedMode()" (ngModelChange)="selectedMode.set($event);"/> Foreign language -> English
+  <input type="radio" [value]="TranslationMode.TRANSLATION_TO_FOREIGN_WORD" name="radio" [ngModel]="selectedMode()"
+         (ngModelChange)="selectedMode.set($event);"/> English -> Foreign language
+  <input type="radio" [value]="TranslationMode.FOREIGN_WORD_TO_TRANSLATION" name="radio" [ngModel]="selectedMode()"
+         (ngModelChange)="selectedMode.set($event);"/> Foreign language -> English
 </form>
 
-@for (item of translationList(); track item) {
-  <app-single-word-translation-view [wordTranslation]="item" [selectedMode]="selectedMode()"/>
+
+@for (item of translationList()|sliceArray:currentWordIndex() + 1; track item; let last=$last) {
+  <app-single-word-translation-view
+    [wordTranslation]="item"
+    [selectedMode]="selectedMode()"
+    [isLastWord]="last"
+    (nextWordClicked)="goToNextWord()"
+  />
 }

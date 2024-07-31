@@ -6,21 +6,26 @@ import {
 } from '../single-word-translation-view/single-word-translation-view.component';
 import {FormsModule} from '@angular/forms';
 import {TranslationMode} from '../models/translation-mode.enum';
+import {SlicePipe} from '@angular/common';
+import {SliceArrayPipe} from '../pipes/slice-array.pipe';
 
 @Component({
   selector: 'app-word-translation-list',
   standalone: true,
   imports: [
     SingleWordTranslationViewComponent,
-    FormsModule
+    FormsModule,
+    SlicePipe,
+    SliceArrayPipe
   ],
   templateUrl: './word-translation-list.component.html',
   styleUrl: './word-translation-list.component.css'
 })
 export class WordTranslationListComponent {
 
-  translationList = signal<WordTranslation[] | undefined>(undefined);
+  translationList = signal<WordTranslation[] >([]);
   selectedMode = signal<TranslationMode>(TranslationMode.TRANSLATION_TO_FOREIGN_WORD);
+  currentWordIndex = signal(0);
 
   constructor(private wordTranslationService: WordTranslationService) {
   }
@@ -30,4 +35,8 @@ export class WordTranslationListComponent {
   }
 
   protected readonly TranslationMode = TranslationMode;
+
+  goToNextWord() {
+    this.currentWordIndex.set(this.currentWordIndex()+1);
+  }
 }

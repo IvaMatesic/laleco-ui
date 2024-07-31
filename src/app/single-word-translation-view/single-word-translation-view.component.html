@@ -4,3 +4,6 @@
   <p>word: {{wordTranslation()?.word}},   translation: {{wordTranslation()?.translation}}</p>
 }
 
+@if(isLastWord()){
+  <button (click)="nextWordClicked.emit()">Next word</button>
+}
