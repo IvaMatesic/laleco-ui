@@ -1,3 +1,16 @@
 td{
   width: 300px;
 }
+
+:host{
+  display: flex;
+
+}
+
+.current-word{
+  border-bottom: 1px solid black;
+}
+
+.old-word{
+  color: gray;
+}

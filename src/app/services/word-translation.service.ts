@@ -29,7 +29,6 @@ export class WordTranslationService {
 
   createWordTranslations(data: string): Observable<string> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    console.log('here in create')
     return this.http.post<string>(`${this.apiUrl}/create/bulk`, data, { headers })
       .pipe(
         catchError(this.handleError<string>('createWordTranslations'))

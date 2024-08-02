@@ -1,23 +1,23 @@
-@if (selectedMode() == TranslationMode.TRANSLATION_TO_FOREIGN_WORD){
-  <table>
+@if (selectedMode() == TranslationMode.TRANSLATION_TO_FOREIGN_WORD) {
+  <table [ngClass]="isCurrentWord()? 'current-word': 'old-word'">
     <tr>
-      <td>{{wordTranslation()?.translation}}</td>
-      @if (showSecondPart()){
-        <td>{{wordTranslation()?.word}}</td>
-      }
+      <td>{{ wordTranslation()?.translation }}</td>
+      <td>@if (showSecondPart()) {
+        {{ wordTranslation()?.word }}
+      }</td>
     </tr>
   </table>
-}@else {
-  <table>
+} @else {
+  <table [ngClass]="isCurrentWord()? 'current-word': 'old-word'">
     <tr>
-      <td>{{wordTranslation()?.word}}</td>
-      @if (showSecondPart()){
-        <td>{{wordTranslation()?.translation}}</td>
+      <td>{{ wordTranslation()?.word }}</td>
+      @if (showSecondPart()) {
+        <td>{{ wordTranslation()?.translation }}</td>
       }
     </tr>
   </table>
 }
 
-@if(isCurrentWord()){
+@if (isCurrentWord()) {
   <button (click)="handleNextClick()">Next</button>
 }

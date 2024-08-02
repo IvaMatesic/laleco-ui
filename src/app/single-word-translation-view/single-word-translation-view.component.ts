@@ -1,11 +1,14 @@
 import {Component, HostListener, input, output, signal} from '@angular/core';
 import {WordTranslation} from '../models/word-translation.model';
 import {TranslationMode} from '../models/translation-mode.enum';
+import {NgClass} from '@angular/common';
 
 @Component({
   selector: 'app-single-word-translation-view',
   standalone: true,
-  imports: [],
+  imports: [
+    NgClass
+  ],
   templateUrl: './single-word-translation-view.component.html',
   styleUrl: './single-word-translation-view.component.css'
 })
@@ -21,7 +24,6 @@ export class SingleWordTranslationViewComponent {
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent): void {
     if (event.key === 'ArrowRight' && this.isCurrentWord()) {
-      console.log('emit next word:'+event.key)
       this.handleNextClick()
     }
   }

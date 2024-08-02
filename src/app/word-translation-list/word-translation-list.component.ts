@@ -8,7 +8,6 @@ import {FormsModule} from '@angular/forms';
 import {TranslationMode} from '../models/translation-mode.enum';
 import {SlicePipe} from '@angular/common';
 import {SliceArrayPipe} from '../pipes/slice-array.pipe';
-import {first} from 'rxjs';
 
 @Component({
   selector: 'app-word-translation-list',
