@@ -30,22 +30,21 @@ export class WordTranslationListComponent {
   constructor(private wordTranslationService: WordTranslationService) {
   }
 
-  @HostListener('window:keydown', ['$event'])
-  handleKeyDown(event: KeyboardEvent): void {
-    if (event.key === 'ArrowRight') {
-      console.log('emit next word:'+event.key)
-      if(this.translationList().length>0)
-      this.goToNextWord();
-    }
-  }
-
   fetchTranslationsClicked() {
     this.wordTranslationService.getAllTranslations().subscribe(response => this.translationList.set(response))
   }
 
   protected readonly TranslationMode = TranslationMode;
 
+  @HostListener('window:keydown', ['$event'])
+  handleKeyDown(event: KeyboardEvent): void {
+    if (event.key === ' ' || event.key==='Enter') {
+      event.preventDefault();
+    }
+  }
+
   goToNextWord() {
+    console.log('goToNextWord')
     this.currentWordIndex.set(this.currentWordIndex()+1);
   }
 }

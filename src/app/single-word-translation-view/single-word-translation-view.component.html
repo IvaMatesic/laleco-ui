@@ -1,9 +1,23 @@
 @if (selectedMode() == TranslationMode.TRANSLATION_TO_FOREIGN_WORD){
-  <p>translation: {{wordTranslation()?.translation}},   word: {{wordTranslation()?.word}}</p>
+  <table>
+    <tr>
+      <td>{{wordTranslation()?.translation}}</td>
+      @if (showSecondPart()){
+        <td>{{wordTranslation()?.word}}</td>
+      }
+    </tr>
+  </table>
 }@else {
-  <p>word: {{wordTranslation()?.word}},   translation: {{wordTranslation()?.translation}}</p>
+  <table>
+    <tr>
+      <td>{{wordTranslation()?.word}}</td>
+      @if (showSecondPart()){
+        <td>{{wordTranslation()?.translation}}</td>
+      }
+    </tr>
+  </table>
 }
 
 @if(isLastWord()){
-  <button (click)="nextWordClicked.emit()">Next word</button>
+  <button (click)="handleNextClick()">Next</button>
 }

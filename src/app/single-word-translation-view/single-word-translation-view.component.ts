@@ -1,4 +1,4 @@
-import {Component, input, output} from '@angular/core';
+import {Component, HostListener, input, output, signal} from '@angular/core';
 import {WordTranslation} from '../models/word-translation.model';
 import {TranslationMode} from '../models/translation-mode.enum';
 
@@ -14,6 +14,22 @@ export class SingleWordTranslationViewComponent {
   selectedMode=input<TranslationMode>(TranslationMode.TRANSLATION_TO_FOREIGN_WORD);
   isLastWord = input<boolean>(true);
   protected readonly TranslationMode = TranslationMode;
+  protected showSecondPart = signal(false);
 
   nextWordClicked = output<void>();
+
+  @HostListener('window:keydown', ['$event'])
+  handleKeyDown(event: KeyboardEvent): void {
+    if (event.key === 'ArrowRight' && this.isLastWord()) {
+      console.log('emit next word:'+event.key)
+      this.handleNextClick()
+    }
+  }
+
+  handleNextClick(){
+    if(this.showSecondPart())
+      this.nextWordClicked.emit()
+    else
+      this.showSecondPart.set(true);
+  }
 }

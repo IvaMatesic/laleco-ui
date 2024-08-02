@@ -8,7 +8,7 @@
 </form>
 
 
-@for (item of translationList()|sliceArray:currentWordIndex() + 1; track item; let last=$last) {
+@for (item of translationList()|sliceArray:currentWordIndex() + 1; track item.id; let last=$last) {
   <app-single-word-translation-view
     [wordTranslation]="item"
     [selectedMode]="selectedMode()"
