@@ -12,7 +12,7 @@ import {TranslationMode} from '../models/translation-mode.enum';
 export class SingleWordTranslationViewComponent {
   wordTranslation = input<WordTranslation>();
   selectedMode=input<TranslationMode>(TranslationMode.TRANSLATION_TO_FOREIGN_WORD);
-  isLastWord = input<boolean>(true);
+  isCurrentWord = input<boolean>(true);
   protected readonly TranslationMode = TranslationMode;
   protected showSecondPart = signal(false);
 
@@ -20,7 +20,7 @@ export class SingleWordTranslationViewComponent {
 
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent): void {
-    if (event.key === 'ArrowRight' && this.isLastWord()) {
+    if (event.key === 'ArrowRight' && this.isCurrentWord()) {
       console.log('emit next word:'+event.key)
       this.handleNextClick()
     }

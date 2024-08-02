@@ -8,6 +8,7 @@ import {FormsModule} from '@angular/forms';
 import {TranslationMode} from '../models/translation-mode.enum';
 import {SlicePipe} from '@angular/common';
 import {SliceArrayPipe} from '../pipes/slice-array.pipe';
+import {first} from 'rxjs';
 
 @Component({
   selector: 'app-word-translation-list',
@@ -23,28 +24,33 @@ import {SliceArrayPipe} from '../pipes/slice-array.pipe';
 })
 export class WordTranslationListComponent {
 
-  translationList = signal<WordTranslation[] >([]);
+  translationList = signal<WordTranslation[]>([]);
+  displayedList = signal<WordTranslation[]>([]);
   selectedMode = signal<TranslationMode>(TranslationMode.TRANSLATION_TO_FOREIGN_WORD);
-  currentWordIndex = signal(0);
+  currentWordIndex = signal(1);
+
 
   constructor(private wordTranslationService: WordTranslationService) {
   }
 
   fetchTranslationsClicked() {
-    this.wordTranslationService.getAllTranslations().subscribe(response => this.translationList.set(response))
+    this.wordTranslationService.getAllTranslations().subscribe(response => {
+      this.translationList.set(response)
+      this.displayedList.set(this.translationList().slice(0, 1))
+    })
   }
 
   protected readonly TranslationMode = TranslationMode;
 
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent): void {
-    if (event.key === ' ' || event.key==='Enter') {
+    if (event.key === ' ' || event.key === 'Enter') {
       event.preventDefault();
     }
   }
 
   goToNextWord() {
-    console.log('goToNextWord')
-    this.currentWordIndex.set(this.currentWordIndex()+1);
+    this.displayedList().unshift(this.translationList()[this.currentWordIndex()]);
+    this.currentWordIndex.set(this.currentWordIndex() + 1);
   }
 }

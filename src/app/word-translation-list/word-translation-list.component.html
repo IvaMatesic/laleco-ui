@@ -8,11 +8,11 @@
 </form>
 
 
-@for (item of translationList()|sliceArray:currentWordIndex() + 1; track item.id; let last=$last) {
+@for (item of displayedList(); track item.id; let first=$first) {
   <app-single-word-translation-view
     [wordTranslation]="item"
     [selectedMode]="selectedMode()"
-    [isLastWord]="last"
+    [isCurrentWord]="first"
     (nextWordClicked)="goToNextWord()"
   />
 }
