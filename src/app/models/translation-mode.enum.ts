@@ -1,0 +1,4 @@
+export enum TranslationMode{
+  FOREIGN_WORD_TO_TRANSLATION,
+  TRANSLATION_TO_FOREIGN_WORD
+}
