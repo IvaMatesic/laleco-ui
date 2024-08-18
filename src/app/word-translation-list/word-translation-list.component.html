@@ -7,6 +7,9 @@
          (ngModelChange)="selectedMode.set($event);"/> Foreign language -> English
 </form>
 
+@if (isLastWord()){
+  No more available translations.
+}
 
 @for (item of displayedList(); track item.id; let first=$first) {
   <app-single-word-translation-view
@@ -15,4 +18,8 @@
     [isCurrentWord]="first"
     (nextWordClicked)="goToNextWord()"
   />
+} @empty {
+  @if (areTranslationsFetched()){
+    <p>No translations available at this time. Try to first upload some translations.</p>
+  }
 }
