@@ -1,6 +1,14 @@
 <h4>Bulk create of translations</h4>
 <form (ngSubmit)="onSubmit()">
   <p>
+    <label>Title of lesson (optional)</label>
+    <input name="title" id="title" [(ngModel)]="enteredTitle"/>
+  </p>
+  <p>
+    <label>URL of lesson (optional)</label>
+    <input name="url" id="url" [(ngModel)]="enteredURL"/>
+  </p>
+  <p>
     <label>Input bulk data here</label>
     <textarea name="data" id="data" rows="10" [(ngModel)]="enteredData"></textarea>
   </p>

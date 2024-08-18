@@ -43,7 +43,7 @@ export class WordTranslationListComponent {
 
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent): void {
-    if (event.key === ' ' || event.key === 'Enter') {
+    if ( event.key === 'Enter') {
       event.preventDefault();
     }
   }
