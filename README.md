@@ -1,27 +1,34 @@
 # LalecoUi
 
+This is UI of the application Laleco writen in Angular. If you want to use all the features of Laleco not with Postman but with a intuitive UI you can clone this repository and run the project by following the next steps.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.2.
 
-## Development server
+# Setup instructions
+### Prerequisites
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Angular 18.1.2.
+- Node 18.19.1 or higher
+- npm 8.3.0 or higher
 
-## Code scaffolding
+1. **Clone the repository**:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+   ```
+   git clone https://github.com/IvaMatesic/laleco-ui.git
+   cd laleco-ui
+   ```
 
-## Build
+2. **Install all dependencies using npm**:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+   ```
+   npm install
+   ```
+3. **Run the application**
+   ```
+   ng serve
+   ```
+4. **Navigate to the page**
 
-## Running unit tests
+Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+   
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
