@@ -27,6 +27,8 @@ export class WordTranslationListComponent {
   displayedList = signal<WordTranslation[]>([]);
   selectedMode = signal<TranslationMode>(TranslationMode.TRANSLATION_TO_FOREIGN_WORD);
   currentWordIndex = signal(1);
+  isLastWord = signal(false);
+  areTranslationsFetched = signal(false);
 
 
   constructor(private wordTranslationService: WordTranslationService) {
@@ -49,7 +51,11 @@ export class WordTranslationListComponent {
   }
 
   goToNextWord() {
-    this.displayedList().unshift(this.translationList()[this.currentWordIndex()]);
-    this.currentWordIndex.set(this.currentWordIndex() + 1);
+    if(this.currentWordIndex() < this.translationList().length) {
+      this.displayedList().unshift(this.translationList()[this.currentWordIndex()]);
+      this.currentWordIndex.set(this.currentWordIndex() + 1);
+    }else{
+      this.isLastWord.set(true);
+    }
   }
 }
