@@ -1,7 +1,7 @@
 <button (click)="fetchTranslationsClicked()">Fetch translations</button>
 
 <form>
-  <label for="translation-mode">Choose translation mode:</label>
+  <label>Choose translation mode:</label>
   <input type="radio" [value]="TranslationMode.TRANSLATION_TO_FOREIGN_WORD" name="translation-mode" [ngModel]="selectedMode()"
          (ngModelChange)="selectedMode.set($event);"/> English -> Foreign language
   <input type="radio" [value]="TranslationMode.FOREIGN_WORD_TO_TRANSLATION" name="translation-mode" [ngModel]="selectedMode()"
