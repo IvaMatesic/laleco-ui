@@ -4,6 +4,8 @@ This is UI of the application Laleco writen in Angular. If you want to use all t
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.2.
 
+If you are interested in future development and improvements you can check [this document](https://docs.google.com/document/d/1aLhBvf_6QBomgpJvhJjOIfKzRqpLalGMyi0LJQIBZpM/edit?usp=sharing).
+
 # Setup instructions
 ### Prerequisites
 
