@@ -3,7 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { WordTranslation } from '../models/word-translation.model'; // Assume you have a model for WordTranslation
-import { environment } from '../../environments/environment.development'; // Ensure your environment file has the API URL
+import { environment } from '../../environments/environment.development';
+import {LessonRequest} from '../models/lesson-request.model';
+import {Lesson} from '../models/lesson.model'; // Ensure your environment file has the API URL
 
 @Injectable({
   providedIn: 'root'
@@ -27,11 +29,11 @@ export class WordTranslationService {
       );
   }
 
-  createWordTranslations(data: string): Observable<string> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<string>(`${this.apiUrl}/create/bulk`, data, { headers })
+  createWordTranslations(data: LessonRequest): Observable<Lesson|string> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json'});
+    return this.http.post<Lesson>(`${this.apiUrl}/create/bulk`, data, { headers })
       .pipe(
-        catchError(this.handleError<string>('createWordTranslations'))
+         catchError(this.handleError<string>('createWordTranslations'))
       );
   }
 

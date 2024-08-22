@@ -12,14 +12,21 @@ import {WordTranslationService} from '../services/word-translation.service';
 export class BulkCreateWordTranslationsComponent {
 
   enteredData = signal('');
+  enteredTitle = signal('');
+  enteredURL = signal('');
 
   constructor(private wordTranslationService: WordTranslationService) {
   }
 
 
   onSubmit() {
-    this.wordTranslationService.createWordTranslations(this.enteredData()).subscribe(response => {
-      console.log('Word translations created', response);
-    });
+    let lessonRequest = {
+      "lessonTitle": this.enteredTitle(),
+      "lessonUrl": this.enteredURL(),
+      "wordTranslationData":this.enteredData()
+    }
+      this.wordTranslationService.createWordTranslations(lessonRequest).subscribe(response => {
+        console.log('Word translations created', response);
+      });
   }
 }
