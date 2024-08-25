@@ -8,18 +8,5 @@ export const routes: Routes = [
   { path: 'home', component: HomepageComponent },
   { path: 'upload', component: BulkCreateWordTranslationsComponent },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', component: HomepageComponent },
+  { path: '**', redirectTo: '/home' },
 ];
-
-// export const routes: Routes = [
-//   { path: '', component: HomepageComponent, pathMatch: 'full' },
-//   { path: '1', component: BulkCreateWordTranslationsComponent },
-//   { path: '1/top100/:name', component: HomepageComponent },
-//   { path: 'home', component: HomepageComponent },
-//   { path: '2/:viewType', component: HomepageComponent },
-//   { path: '**', redirectTo: '/home', pathMatch: 'full' },
-//   { path: 'home', component: HomepageComponent },
-//   { path: 'upload', component: BulkCreateWordTranslationsComponent },
-//   { path: '',   redirectTo: '/home', pathMatch: 'full' },
-//   { path: '**', component: HomepageComponent },
-// ];
