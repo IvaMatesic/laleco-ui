@@ -1,26 +1,49 @@
-<button (click)="fetchTranslationsClicked()">Fetch translations</button>
+<div class="mx-auto w-full justify-center text-center">
+  <h2>Vocabeltrainer</h2>
+  <form class="space-x-2 xs:space-x-3 md:space-x-5 lg:space-x-8 section-spacing">
+    <label [ngClass]="{'btn-primary-outline': selectedMode() === TranslationMode.TRANSLATION_TO_FOREIGN_WORD}"
+           class="btn">
+      <input type="radio" class="hidden btn" [value]="TranslationMode.TRANSLATION_TO_FOREIGN_WORD"
+             name="translation-mode" [ngModel]="selectedMode()"
+             (ngModelChange)="selectedMode.set($event);"/> English -> German
+    </label>
+    <label [ngClass]="{'btn-primary-outline': selectedMode() === TranslationMode.FOREIGN_WORD_TO_TRANSLATION}"
+           class="btn">
+      <input type="radio" class="hidden" [value]="TranslationMode.FOREIGN_WORD_TO_TRANSLATION" name="translation-mode"
+             [ngModel]="selectedMode()"
+             (ngModelChange)="selectedMode.set($event);"/> German -> English
+    </label>
+  </form>
 
-<form>
-  <label>Choose translation mode:</label>
-  <input type="radio" [value]="TranslationMode.TRANSLATION_TO_FOREIGN_WORD" name="translation-mode" [ngModel]="selectedMode()"
-         (ngModelChange)="selectedMode.set($event);"/> English -> Foreign language
-  <input type="radio" [value]="TranslationMode.FOREIGN_WORD_TO_TRANSLATION" name="translation-mode" [ngModel]="selectedMode()"
-         (ngModelChange)="selectedMode.set($event);"/> Foreign language -> English
-</form>
-
-@if (isLastWord()){
-  No more available translations.
-}
-
-@for (item of displayedList(); track item.id; let first=$first) {
-  <app-single-word-translation-view
-    [wordTranslation]="item"
-    [selectedMode]="selectedMode()"
-    [isCurrentWord]="first"
-    (nextWordClicked)="goToNextWord()"
-  />
-} @empty {
-  @if (areTranslationsFetched()){
-    <p>No translations available at this time. Try to first upload some translations.</p>
+  @if (isLastWord()) {
+    <p class="section-spacing text-secondary-dark">No more available translations.</p>
   }
-}
+
+  <div class="section-spacing mx-auto flex justify-center xs:p-3">
+    <div class="w-full sm:w-11/12 md:w-10/12 lg:w-8/12 xl:w-6/12">
+      @for (item of displayedList(); track item.id; let first = $first) {
+        <app-single-word-translation-view
+          [wordTranslation]="item"
+          [selectedMode]="selectedMode()"
+          [isCurrentWord]="first"
+          [showSecondPart]="showSecondPart()"
+        />
+      } @empty {
+        @if (areTranslationsFetched()) {
+          <p>No translations available at this time. Try to first upload some translations.</p>
+        }
+      }
+    </div>
+
+  </div>
+
+  @if (!areTranslationsFetched()) {
+    <button (click)="fetchTranslationsClicked()" class="section-spacing btn btn-primary">
+      Fetch translations
+    </button>
+  } @else {
+    <button (click)="handleNextClick()" class="btn btn-primary btn-fixed-bottom btn-mobile-large px-8 py-4">
+      Next
+    </button>
+  }
+</div>

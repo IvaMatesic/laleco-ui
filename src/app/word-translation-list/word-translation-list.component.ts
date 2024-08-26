@@ -6,7 +6,7 @@ import {
 } from '../single-word-translation-view/single-word-translation-view.component';
 import {FormsModule} from '@angular/forms';
 import {TranslationMode} from '../models/translation-mode.enum';
-import {SlicePipe} from '@angular/common';
+import {CommonModule, SlicePipe} from '@angular/common';
 import {SliceArrayPipe} from '../pipes/slice-array.pipe';
 
 @Component({
@@ -16,7 +16,8 @@ import {SliceArrayPipe} from '../pipes/slice-array.pipe';
     SingleWordTranslationViewComponent,
     FormsModule,
     SlicePipe,
-    SliceArrayPipe
+    SliceArrayPipe,
+    CommonModule
   ],
   templateUrl: './word-translation-list.component.html',
   styleUrl: './word-translation-list.component.css'
@@ -29,6 +30,7 @@ export class WordTranslationListComponent {
   currentWordIndex = signal(1);
   isLastWord = signal(false);
   areTranslationsFetched = signal(false);
+  showSecondPart = signal(false);
 
 
   constructor(private wordTranslationService: WordTranslationService) {
@@ -37,7 +39,8 @@ export class WordTranslationListComponent {
   fetchTranslationsClicked() {
     this.wordTranslationService.getAllTranslations().subscribe(response => {
       this.translationList.set(response)
-      this.displayedList.set(this.translationList().slice(0, 1))
+      this.displayedList.set(this.translationList().slice(0, 1));
+      this.areTranslationsFetched.set(true);
     })
   }
 
@@ -48,7 +51,11 @@ export class WordTranslationListComponent {
     if ( event.key === 'Enter') {
       event.preventDefault();
     }
+    if (event.key === 'ArrowRight') {
+      this.handleNextClick()
+    }
   }
+
 
   goToNextWord() {
     if(this.currentWordIndex() < this.translationList().length) {
@@ -57,5 +64,13 @@ export class WordTranslationListComponent {
     }else{
       this.isLastWord.set(true);
     }
+    this.showSecondPart.set(false);
+  }
+
+  handleNextClick(){
+    if(this.showSecondPart())
+      this.goToNextWord();
+    else
+      this.showSecondPart.set(true);
   }
 }

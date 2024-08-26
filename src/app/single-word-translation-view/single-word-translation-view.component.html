@@ -1,23 +1,19 @@
-@if (selectedMode() == TranslationMode.TRANSLATION_TO_FOREIGN_WORD) {
-  <table [ngClass]="isCurrentWord()? 'current-word': 'old-word'">
-    <tr>
-      <td>{{ wordTranslation()?.translation }}</td>
-      <td>@if (showSecondPart()) {
-        {{ wordTranslation()?.word }}
-      }</td>
-    </tr>
-  </table>
-} @else {
-  <table [ngClass]="isCurrentWord()? 'current-word': 'old-word'">
-    <tr>
-      <td>{{ wordTranslation()?.word }}</td>
-      @if (showSecondPart()) {
-        <td>{{ wordTranslation()?.translation }}</td>
-      }
-    </tr>
-  </table>
-}
 
-@if (isCurrentWord()) {
-  <button (click)="handleNextClick()">Next</button>
-}
+<div class="grid grid-cols-2 gap-4 w-full" [ngClass]="isCurrentWord() ? 'border-b-2 border-secondary-500' : 'text-primary-dark'">
+  @if(selectedMode() == TranslationMode.TRANSLATION_TO_FOREIGN_WORD){
+  <div class="py-2 px-4 text-start" >
+    {{ wordTranslation()?.translation }}
+  </div>
+  <div class="py-2 px-4 text-start" *ngIf="showSecondPart() || !isCurrentWord()">
+    {{ wordTranslation()?.word }}
+  </div>
+  }
+  @if(selectedMode() == TranslationMode.FOREIGN_WORD_TO_TRANSLATION){
+    <div class="py-2 px-4 text-start" >
+      {{ wordTranslation()?.word }}
+    </div>
+    <div class="py-2 px-4 text-start" *ngIf="showSecondPart() || !isCurrentWord()">
+      {{ wordTranslation()?.translation }}
+    </div>
+  }
+</div>
