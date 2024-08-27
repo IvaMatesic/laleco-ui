@@ -48,6 +48,10 @@
     @apply bg-primary text-white
   }
 
+  .btn-primary-disabled{
+    @apply bg-primary-disabled
+  }
+
   .btn-primary-outline {
     @apply border border-primary
   }
