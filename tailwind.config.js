@@ -5,9 +5,13 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        'xs': '400px'
+      },
       colors: {
         primary: {
           DEFAULT: '#93B48B',
+          disabled: '#baccb0',
           light: '#F7FFF6',
           dark: '#8491A3'
         },

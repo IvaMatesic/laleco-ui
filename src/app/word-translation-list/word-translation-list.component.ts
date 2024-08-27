@@ -6,8 +6,7 @@ import {
 } from '../single-word-translation-view/single-word-translation-view.component';
 import {FormsModule} from '@angular/forms';
 import {TranslationMode} from '../models/translation-mode.enum';
-import {SlicePipe} from '@angular/common';
-import {SliceArrayPipe} from '../pipes/slice-array.pipe';
+import {CommonModule, SlicePipe} from '@angular/common';
 
 @Component({
   selector: 'app-word-translation-list',
@@ -16,7 +15,7 @@ import {SliceArrayPipe} from '../pipes/slice-array.pipe';
     SingleWordTranslationViewComponent,
     FormsModule,
     SlicePipe,
-    SliceArrayPipe
+    CommonModule
   ],
   templateUrl: './word-translation-list.component.html',
   styleUrl: './word-translation-list.component.css'
@@ -29,7 +28,9 @@ export class WordTranslationListComponent {
   currentWordIndex = signal(1);
   isLastWord = signal(false);
   areTranslationsFetched = signal(false);
+  showSecondPart = signal(false);
 
+  protected readonly TranslationMode = TranslationMode;
 
   constructor(private wordTranslationService: WordTranslationService) {
   }
@@ -37,25 +38,35 @@ export class WordTranslationListComponent {
   fetchTranslationsClicked() {
     this.wordTranslationService.getAllTranslations().subscribe(response => {
       this.translationList.set(response)
-      this.displayedList.set(this.translationList().slice(0, 1))
+      this.displayedList.set(this.translationList().slice(0, 1));
+      this.areTranslationsFetched.set(true);
     })
   }
 
-  protected readonly TranslationMode = TranslationMode;
-
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent): void {
-    if ( event.key === 'Enter') {
+    if (event.key === 'Enter') {
       event.preventDefault();
+    }
+    if (event.key === 'ArrowRight') {
+      this.handleNextClick()
     }
   }
 
   goToNextWord() {
-    if(this.currentWordIndex() < this.translationList().length) {
+    if (this.currentWordIndex() < this.translationList().length) {
       this.displayedList().unshift(this.translationList()[this.currentWordIndex()]);
       this.currentWordIndex.set(this.currentWordIndex() + 1);
-    }else{
+      this.showSecondPart.set(false);
+    } else {
       this.isLastWord.set(true);
     }
+  }
+
+  handleNextClick() {
+    if (this.showSecondPart() && !this.isLastWord())
+      this.goToNextWord();
+    else
+      this.showSecondPart.set(true);
   }
 }
