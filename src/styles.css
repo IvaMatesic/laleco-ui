@@ -11,14 +11,14 @@
   }
 
   h1 {
-    @apply text-5xl md:text-5xl lg:text-8xl
+    @apply text-5xl md:text-5xl lg:text-6xl
     mb-2 md:mb-4 pt-2 md:pt-4
     leading-tight font-title
     text-secondary-dark;
   }
 
   h2 {
-    @apply text-2xl md:text-2xl lg:text-3xl
+    @apply text-2xl md:text-3xl
     mb-5 mt-5 lg:mb-10 lg:mt-8
     leading-tight font-title
     text-secondary-dark;
