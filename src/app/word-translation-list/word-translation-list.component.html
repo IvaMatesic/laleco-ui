@@ -24,15 +24,15 @@
       Fetch translations
     </button>
   } @else {
-    <div class="fixed bottom-20 left-0 w-full h-20 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
-    <div class="fixed bottom-0 left-0 w-full h-20 bg-white"></div>
+    <div class="fixed-bottom-div bottom-20 h-20 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
+    <div class="fixed-bottom-div bottom-0 h-20 bg-white"></div>
     <button [disabled]="isLastWord()" (click)="handleNextClick()" class="btn btn-primary btn-fixed-bottom btn-mobile-large px-8 py-4 disabled:btn-primary-disabled">
       Next
     </button>
   }
 
   <div class="section-spacing mx-auto flex justify-center xs:p-3 mb-32">
-    <div class="w-full sm:w-11/12 md:w-10/12 lg:w-8/12 xl:w-6/12">
+    <div class="w-section">
       @for (item of displayedList(); track item.id; let first = $first) {
         <app-single-word-translation-view
           [wordTranslation]="item"

@@ -64,6 +64,10 @@
     @apply fixed bottom-4 left-1/2 transform -translate-x-1/2
   }
 
+  .fixed-bottom-div{
+    @apply fixed left-0 w-full
+  }
+
   .w-section{
     @apply w-full sm:w-11/12 md:w-10/12 lg:w-8/12 xl:w-6/12
   }
