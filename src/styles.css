@@ -64,4 +64,15 @@
     @apply fixed bottom-4 left-1/2 transform -translate-x-1/2
   }
 
+  .w-section{
+    @apply w-full sm:w-11/12 md:w-10/12 lg:w-8/12 xl:w-6/12
+  }
+
+  input, textarea{
+    @apply border border-primary rounded-md p-2 w-full
+  }
+
+  .input-div{
+    @apply flex flex-col space-y-2 text-start mt-5
+  }
 }

@@ -1,16 +1,25 @@
-<h4>Bulk create of translations</h4>
-<form (ngSubmit)="onSubmit()">
-  <p>
-    <label>Title of lesson (optional)</label>
-    <input name="title" id="title" [(ngModel)]="enteredTitle"/>
-  </p>
-  <p>
+<div class="mx-auto w-full text-center px-3 sm:px-8">
+  <h2>Upload translations</h2>
+<form (ngSubmit)="onSubmit()" class="mx-auto w-section">
+  <div class="input-div">
+    <label for="title">Title of lesson (optional)</label>
+    <input
+      name="title"
+      id="title"
+      [(ngModel)]="enteredTitle"
+    />
+  </div>
+  <div class="input-div">
     <label>URL of lesson (optional)</label>
     <input name="url" id="url" [(ngModel)]="enteredURL"/>
-  </p>
+  </div>
   <p>
-    <label>Input bulk data here</label>
-    <textarea name="data" id="data" rows="10" [(ngModel)]="enteredData"></textarea>
+
   </p>
-  <button type="submit">Submit</button>
+  <div class="input-div">
+    <label>Vocabulary data</label>
+    <textarea name="data" id="data" rows="5" [(ngModel)]="enteredData"></textarea>
+  </div>
+  <button class="btn btn-primary section-spacing" type="submit">Submit</button>
 </form>
+</div>
