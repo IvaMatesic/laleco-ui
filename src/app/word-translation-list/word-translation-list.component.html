@@ -1,6 +1,6 @@
 <div class="mx-auto w-full text-center">
   <h2>Vocabeltrainer</h2>
-  <app-options-collapsible [selectedMode]="selectedMode()" (translationModeChanged)="changeTranslationMode($event)"/>
+  <app-options-collapsible (fetchModeChanged)="changeFetchMode($event)" [fetchModeInput]="selectedFetchMode()" [translationModeInput]="selectedTranslateMode()" (translationModeChanged)="changeTranslationMode($event)"/>
 
   @if (isLastWord()) {
     <p class="section-spacing text-secondary-dark">No more available translations.</p>
@@ -24,7 +24,7 @@
       @for (item of displayedList(); track item.id; let first = $first) {
         <app-single-word-translation-view
           [wordTranslation]="item"
-          [selectedMode]="selectedMode()"
+          [selectedMode]="selectedTranslateMode()"
           [isCurrentWord]="first"
           [showSecondPart]="showSecondPart()"
         />

@@ -12,13 +12,13 @@
     [ngClass]="{ 'max-h-0': !isOpen(), 'max-h-screen': isOpen() }"
     class="overflow-hidden transition-all duration-300 ease-in-out"
   >
-    <form class="space-y-4 mt-2 ml-10">
+    <div class="space-y-4 mt-2 ml-10">
       <div class="grid grid-cols-2 sm:grid-cols-3 gap-y-2 md:gap-y-0 gap-x-2 xs:gap-x-3 md:gap-x-5 lg:gap-x-8 items-center">
         <p class="col-span-2 sm:col-span-1 justify-self-start hidden sm:block mb-2">Translation mode:</p>
-        <div class="col-span-1 flex space-x-2">
+        <div class="filter-option">
           <button (click)="translationModeChanged.emit(TranslationMode.TRANSLATION_TO_FOREIGN_WORD)"
             [ngClass]="{
-              'btn-primary-outline': selectedMode() === TranslationMode.TRANSLATION_TO_FOREIGN_WORD
+              'btn-primary-outline': translationModeInput() === TranslationMode.TRANSLATION_TO_FOREIGN_WORD
             }"
             class="btn text-center"
           >
@@ -26,10 +26,10 @@
           </button>
         </div>
           <div class="col-span-1 flex space-x-2">
-            <div class="col-span-1 flex space-x-2">
+            <div class="filter-option">
               <button (click)="translationModeChanged.emit(TranslationMode.FOREIGN_WORD_TO_TRANSLATION)"
                       [ngClass]="{
-              'btn-primary-outline': selectedMode() === TranslationMode.FOREIGN_WORD_TO_TRANSLATION
+              'btn-primary-outline': translationModeInput() === TranslationMode.FOREIGN_WORD_TO_TRANSLATION
             }"
                       class="btn text-center"
               >
@@ -38,6 +38,31 @@
             </div>
         </div>
       </div>
-    </form>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-y-2 md:gap-y-0 gap-x-2 xs:gap-x-3 md:gap-x-5 lg:gap-x-8 items-center">
+        <p class="col-span-2 sm:col-span-1 justify-self-start hidden sm:block mb-2">Words to fetch:</p>
+        <div class="filter-option">
+          <button (click)="fetchModeChanged.emit(FetchMode.ALL)"
+                  [ngClass]="{
+              'btn-primary-outline': fetchModeInput() === FetchMode.ALL
+            }"
+                  class="btn text-center"
+          >
+            All
+          </button>
+        </div>
+        <div class="col-span-1 flex space-x-2">
+          <div class="col-span-1 flex space-x-2">
+            <button (click)="fetchModeChanged.emit(FetchMode.LATEST_LESSONS)"
+                    [ngClass]="{
+              'btn-primary-outline': fetchModeInput() === FetchMode.LATEST_LESSONS
+            }"
+                    class="btn text-center"
+            >
+              Latest lessons
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

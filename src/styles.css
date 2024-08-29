@@ -79,4 +79,8 @@
   .input-div{
     @apply flex flex-col space-y-2 text-start mt-5
   }
+
+  .filter-option{
+    @apply col-span-1 flex space-x-2 justify-center
+  }
 }
