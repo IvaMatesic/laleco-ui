@@ -1,19 +1,6 @@
 <div class="mx-auto w-full text-center">
   <h2>Vocabeltrainer</h2>
-  <form class="space-x-2 xs:space-x-3 md:space-x-5 lg:space-x-8 section-spacing">
-    <label [ngClass]="{'btn-primary-outline': selectedMode() === TranslationMode.TRANSLATION_TO_FOREIGN_WORD}"
-           class="btn">
-      <input type="radio" class="hidden btn" [value]="TranslationMode.TRANSLATION_TO_FOREIGN_WORD"
-             name="translation-mode" [ngModel]="selectedMode()"
-             (ngModelChange)="selectedMode.set($event);"/> English -> German
-    </label>
-    <label [ngClass]="{'btn-primary-outline': selectedMode() === TranslationMode.FOREIGN_WORD_TO_TRANSLATION}"
-           class="btn">
-      <input type="radio" class="hidden" [value]="TranslationMode.FOREIGN_WORD_TO_TRANSLATION" name="translation-mode"
-             [ngModel]="selectedMode()"
-             (ngModelChange)="selectedMode.set($event);"/> German -> English
-    </label>
-  </form>
+  <app-options-collapsible/>
 
   @if (isLastWord()) {
     <p class="section-spacing text-secondary-dark">No more available translations.</p>
@@ -26,7 +13,8 @@
   } @else {
     <div class="fixed-bottom-div bottom-20 h-20 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
     <div class="fixed-bottom-div bottom-0 h-20 bg-white"></div>
-    <button [disabled]="isLastWord()" (click)="handleNextClick()" class="btn btn-primary btn-fixed-bottom btn-mobile-large px-8 py-4 disabled:btn-primary-disabled">
+    <button [disabled]="isLastWord()" (click)="handleNextClick()"
+            class="btn btn-primary btn-fixed-bottom btn-mobile-large px-8 py-4 disabled:btn-primary-disabled">
       Next
     </button>
   }

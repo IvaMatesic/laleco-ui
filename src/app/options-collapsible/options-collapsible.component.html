@@ -1,0 +1,58 @@
+<div class="w-section my-4 mx-auto">
+  <button
+    (click)="isOpen.set(!isOpen())"
+    class="px-4 flex items-center space-x-2"
+  >
+    <span>Options</span>
+    <fa-icon class="text-primary" [icon]="isOpen() ? faChevronUp : faChevronDown"></fa-icon>
+  </button>
+
+  <div
+    *ngIf="isOpen()"
+    [ngClass]="{ 'max-h-0': !isOpen(), 'max-h-screen': isOpen() }"
+    class="overflow-hidden transition-all duration-300 ease-in-out"
+  >
+    <form class="space-y-4 mt-2 ml-10">
+      <!-- Group 1 -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-y-2 md:gap-y-0 gap-x-2 xs:gap-x-3 md:gap-x-5 lg:gap-x-8 items-center">
+        <p class="col-span-2 sm:col-span-1 justify-self-start">Translation mode:</p>
+        <div class="col-span-1 flex space-x-2">
+          <label
+            [ngClass]="{
+              'btn-primary-outline': selectedMode() === TranslationMode.TRANSLATION_TO_FOREIGN_WORD
+            }"
+            class="btn text-center"
+          >
+            <input
+              type="radio"
+              class="hidden"
+              [value]="TranslationMode.TRANSLATION_TO_FOREIGN_WORD"
+              name="translation-mode"
+              [ngModel]="selectedMode()"
+              (ngModelChange)="selectedMode.set($event)"
+            />
+            English -> German
+          </label>
+        </div>
+          <div class="col-span-1 flex space-x-2">
+          <label
+            [ngClass]="{
+              'btn-primary-outline': selectedMode() === TranslationMode.FOREIGN_WORD_TO_TRANSLATION
+            }"
+            class="btn text-center"
+          >
+            <input
+              type="radio"
+              class="hidden"
+              [value]="TranslationMode.FOREIGN_WORD_TO_TRANSLATION"
+              name="translation-mode"
+              [ngModel]="selectedMode()"
+              (ngModelChange)="selectedMode.set($event)"
+            />
+            German -> English
+          </label>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

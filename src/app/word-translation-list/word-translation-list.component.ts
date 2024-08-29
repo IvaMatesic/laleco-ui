@@ -7,6 +7,7 @@ import {
 import {FormsModule} from '@angular/forms';
 import {TranslationMode} from '../models/translation-mode.enum';
 import {CommonModule, SlicePipe} from '@angular/common';
+import {OptionsCollapsibleComponent} from '../options-collapsible/options-collapsible.component';
 
 @Component({
   selector: 'app-word-translation-list',
@@ -15,7 +16,8 @@ import {CommonModule, SlicePipe} from '@angular/common';
     SingleWordTranslationViewComponent,
     FormsModule,
     SlicePipe,
-    CommonModule
+    CommonModule,
+    OptionsCollapsibleComponent
   ],
   templateUrl: './word-translation-list.component.html',
   styleUrl: './word-translation-list.component.css'
