@@ -71,4 +71,8 @@ export class WordTranslationListComponent {
     else
       this.showSecondPart.set(true);
   }
+
+  changeTranslationMode(mode: TranslationMode){
+    this.selectedMode.set(mode);
+  }
 }

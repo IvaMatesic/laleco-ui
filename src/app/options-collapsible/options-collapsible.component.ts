@@ -1,4 +1,4 @@
-import {Component, signal} from '@angular/core';
+import {Component, input, output, signal} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {faChevronDown, faChevronUp} from '@fortawesome/free-solid-svg-icons';
@@ -17,6 +17,7 @@ export class OptionsCollapsibleComponent {
   faChevronDown = faChevronDown;
   faChevronUp = faChevronUp;
   protected readonly TranslationMode = TranslationMode;
-  selectedMode = signal<TranslationMode>(TranslationMode.TRANSLATION_TO_FOREIGN_WORD);
+  selectedMode = input<TranslationMode>(TranslationMode.TRANSLATION_TO_FOREIGN_WORD);
+  translationModeChanged = output<TranslationMode>();
 
 }
