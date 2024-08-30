@@ -1,6 +1,10 @@
 <div class="mx-auto w-full text-center">
   <h2>Vocabeltrainer</h2>
-  <app-options-collapsible (fetchModeChanged)="changeFetchMode($event)" [fetchModeInput]="selectedFetchMode()" [translationModeInput]="selectedTranslateMode()" (translationModeChanged)="changeTranslationMode($event)"/>
+  <app-options-collapsible (fetchModeChanged)="changeFetchMode($event)" [fetchModeInput]="selectedFetchMode()"
+                           [translationModeInput]="selectedTranslateMode()"
+                           (translationModeChanged)="changeTranslationMode($event)"
+                           (numberOfLessonsChanged)="changeNumberOfLessons($event)"
+  />
 
   @if (isLastWord()) {
     <p class="section-spacing text-secondary-dark">No more available translations.</p>

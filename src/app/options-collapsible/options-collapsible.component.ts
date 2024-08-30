@@ -23,4 +23,13 @@ export class OptionsCollapsibleComponent {
   fetchModeInput = input<FetchMode>(FetchMode.ALL);
   translationModeChanged = output<TranslationMode>();
   fetchModeChanged = output<FetchMode>();
+  numberOfLessonsChanged = output<number>();
+
+  onInputNumberOfLessonsChanged(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    const value = parseInt(inputElement.value, 10);
+    if (!isNaN(value)) {
+      this.numberOfLessonsChanged.emit(value);
+    }
+  }
 }

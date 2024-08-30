@@ -13,8 +13,8 @@
     class="overflow-hidden transition-all duration-300 ease-in-out"
   >
     <div class="space-y-4 mt-2 ml-10">
-      <div class="grid grid-cols-2 sm:grid-cols-3 gap-y-2 md:gap-y-0 gap-x-2 xs:gap-x-3 md:gap-x-5 lg:gap-x-8 items-center">
-        <p class="col-span-2 sm:col-span-1 justify-self-start hidden sm:block mb-2">Translation mode:</p>
+      <div class="filter-row">
+        <p class="filter-title hidden-mobile">Translation mode:</p>
         <div class="filter-option">
           <button (click)="translationModeChanged.emit(TranslationMode.TRANSLATION_TO_FOREIGN_WORD)"
             [ngClass]="{
@@ -25,7 +25,6 @@
             English -> German
           </button>
         </div>
-          <div class="col-span-1 flex space-x-2">
             <div class="filter-option">
               <button (click)="translationModeChanged.emit(TranslationMode.FOREIGN_WORD_TO_TRANSLATION)"
                       [ngClass]="{
@@ -35,10 +34,9 @@
               >
                 German -> English
               </button>
-            </div>
         </div>
       </div>
-      <div class="grid grid-cols-2 sm:grid-cols-3 gap-y-2 md:gap-y-0 gap-x-2 xs:gap-x-3 md:gap-x-5 lg:gap-x-8 items-center">
+      <div class="filter-row">
         <p class="col-span-2 sm:col-span-1 justify-self-start hidden sm:block mb-2">Words to fetch:</p>
         <div class="filter-option">
           <button (click)="fetchModeChanged.emit(FetchMode.ALL)"
@@ -63,6 +61,14 @@
           </div>
         </div>
       </div>
+      @if(fetchModeInput()==FetchMode.LATEST_LESSONS){
+      <div class="filter-row">
+        <p class="filter-title">Number of lessons:</p>
+        <div class="filter-option">
+         <input type="number" (input)="onInputNumberOfLessonsChanged($event)" value="1"/>
+        </div>
+      </div>
+      }
     </div>
   </div>
 </div>

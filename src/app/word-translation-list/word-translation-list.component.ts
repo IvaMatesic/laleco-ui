@@ -33,6 +33,7 @@ export class WordTranslationListComponent {
   isLastWord = signal(false);
   areTranslationsFetched = signal(false);
   showSecondPart = signal(false);
+  numberOfLessons= signal(1);
 
   protected readonly TranslationMode = TranslationMode;
 
@@ -40,7 +41,7 @@ export class WordTranslationListComponent {
   }
 
   fetchTranslationsClicked() {
-    this.wordTranslationService.getAllTranslations().subscribe(response => {
+    this.wordTranslationService.getAllTranslations(this.selectedFetchMode(), this.numberOfLessons()).subscribe(response => {
       this.translationList.set(response)
       this.displayedList.set(this.translationList().slice(0, 1));
       this.areTranslationsFetched.set(true);
@@ -80,5 +81,9 @@ export class WordTranslationListComponent {
 
   changeFetchMode(fetchMode: FetchMode) {
     this.selectedFetchMode.set(fetchMode);
+  }
+
+  changeNumberOfLessons(numberOfLessons: number) {
+    this.numberOfLessons.set(numberOfLessons);
   }
 }
