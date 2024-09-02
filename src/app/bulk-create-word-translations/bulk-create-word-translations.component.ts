@@ -6,8 +6,7 @@ import {WordTranslationService} from '../services/word-translation.service';
   selector: 'app-bulk-create-word-translations',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: './bulk-create-word-translations.component.html',
-  styleUrl: './bulk-create-word-translations.component.css'
+  templateUrl: './bulk-create-word-translations.component.html'
 })
 export class BulkCreateWordTranslationsComponent {
 

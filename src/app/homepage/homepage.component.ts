@@ -11,8 +11,7 @@ import {WordTranslationListComponent} from '../word-translation-list/word-transl
     BulkCreateWordTranslationsComponent,
     WordTranslationListComponent
   ],
-  templateUrl: './homepage.component.html',
-  styleUrl: './homepage.component.css'
+  templateUrl: './homepage.component.html'
 })
 export class HomepageComponent {
 

@@ -9,8 +9,7 @@ import {CommonModule, NgClass} from '@angular/common';
   imports: [
     NgClass, CommonModule
   ],
-  templateUrl: './single-word-translation-view.component.html',
-  styleUrl: './single-word-translation-view.component.css'
+  templateUrl: './single-word-translation-view.component.html'
 })
 export class SingleWordTranslationViewComponent {
   wordTranslation = input<WordTranslation>();

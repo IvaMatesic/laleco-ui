@@ -20,8 +20,7 @@ import {FetchMode} from '../models/fetch-mode.enum';
     CommonModule,
     OptionsCollapsibleComponent
   ],
-  templateUrl: './word-translation-list.component.html',
-  styleUrl: './word-translation-list.component.css'
+  templateUrl: './word-translation-list.component.html'
 })
 export class WordTranslationListComponent {
 
