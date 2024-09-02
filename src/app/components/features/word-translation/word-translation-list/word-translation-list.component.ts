@@ -1,14 +1,14 @@
 import {Component, HostListener, signal} from '@angular/core';
-import {WordTranslationService} from '../services/word-translation.service';
-import {WordTranslation} from '../models/word-translation.model';
+import {WordTranslationService} from '../../../../services/word-translation.service';
+import {WordTranslation} from '../../../../models/word-translation.model';
 import {
   SingleWordTranslationViewComponent
 } from '../single-word-translation-view/single-word-translation-view.component';
 import {FormsModule} from '@angular/forms';
-import {TranslationMode} from '../models/translation-mode.enum';
+import {TranslationMode} from '../../../../models/translation-mode.enum';
 import {CommonModule, SlicePipe} from '@angular/common';
 import {OptionsCollapsibleComponent} from '../options-collapsible/options-collapsible.component';
-import {FetchMode} from '../models/fetch-mode.enum';
+import {FetchMode} from '../../../../models/fetch-mode.enum';
 
 @Component({
   selector: 'app-word-translation-list',

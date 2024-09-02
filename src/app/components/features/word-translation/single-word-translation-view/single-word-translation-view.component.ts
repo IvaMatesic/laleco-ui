@@ -1,6 +1,6 @@
 import {Component, input} from '@angular/core';
-import {WordTranslation} from '../models/word-translation.model';
-import {TranslationMode} from '../models/translation-mode.enum';
+import {WordTranslation} from '../../../../models/word-translation.model';
+import {TranslationMode} from '../../../../models/translation-mode.enum';
 import {CommonModule, NgClass} from '@angular/common';
 
 @Component({

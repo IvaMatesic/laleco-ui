@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import {HomepageComponent} from './homepage/homepage.component';
+import {HomepageComponent} from './components/features/homepage/homepage.component';
 import {
   BulkCreateWordTranslationsComponent
-} from './bulk-create-word-translations/bulk-create-word-translations.component';
+} from './components/features/word-translation/bulk-create-word-translations/bulk-create-word-translations.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomepageComponent },
