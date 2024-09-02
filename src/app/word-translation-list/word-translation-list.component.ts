@@ -8,6 +8,7 @@ import {FormsModule} from '@angular/forms';
 import {TranslationMode} from '../models/translation-mode.enum';
 import {CommonModule, SlicePipe} from '@angular/common';
 import {OptionsCollapsibleComponent} from '../options-collapsible/options-collapsible.component';
+import {FetchMode} from '../models/fetch-mode.enum';
 
 @Component({
   selector: 'app-word-translation-list',
@@ -26,11 +27,14 @@ export class WordTranslationListComponent {
 
   translationList = signal<WordTranslation[]>([]);
   displayedList = signal<WordTranslation[]>([]);
-  selectedMode = signal<TranslationMode>(TranslationMode.TRANSLATION_TO_FOREIGN_WORD);
+  selectedTranslateMode = signal<TranslationMode>(TranslationMode.TRANSLATION_TO_FOREIGN_WORD);
+  selectedFetchMode = signal<FetchMode>(FetchMode.ALL);
   currentWordIndex = signal(1);
   isLastWord = signal(false);
   areTranslationsFetched = signal(false);
   showSecondPart = signal(false);
+  numberOfLessons= signal(1);
+  showFetchAgain = signal(false);
 
   protected readonly TranslationMode = TranslationMode;
 
@@ -38,11 +42,18 @@ export class WordTranslationListComponent {
   }
 
   fetchTranslationsClicked() {
-    this.wordTranslationService.getAllTranslations().subscribe(response => {
+    this.wordTranslationService.getAllTranslations(this.selectedFetchMode(), this.numberOfLessons()).subscribe(response => {
       this.translationList.set(response)
       this.displayedList.set(this.translationList().slice(0, 1));
-      this.areTranslationsFetched.set(true);
+      this.resetVariables();
     })
+  }
+
+  resetVariables(){
+    this.areTranslationsFetched.set(true);
+    this.showFetchAgain.set(false);
+    this.currentWordIndex.set(1);
+    this.isLastWord.set(false);
   }
 
   @HostListener('window:keydown', ['$event'])
@@ -73,6 +84,16 @@ export class WordTranslationListComponent {
   }
 
   changeTranslationMode(mode: TranslationMode){
-    this.selectedMode.set(mode);
+    this.selectedTranslateMode.set(mode);
+  }
+
+  changeFetchMode(fetchMode: FetchMode) {
+    this.selectedFetchMode.set(fetchMode);
+    this.showFetchAgain.set(true);
+  }
+
+  changeNumberOfLessons(numberOfLessons: number) {
+    this.numberOfLessons.set(numberOfLessons);
+    this.showFetchAgain.set(true);
   }
 }

@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { WordTranslation } from '../models/word-translation.model'; // Assume you have a model for WordTranslation
-import { environment } from '../../environments/environment.development';
+import {catchError} from 'rxjs/operators';
+import {WordTranslation} from '../models/word-translation.model'; // Assume you have a model for WordTranslation
+import {environment} from '../../environments/environment.development';
 import {LessonRequest} from '../models/lesson-request.model';
-import {Lesson} from '../models/lesson.model'; // Ensure your environment file has the API URL
+import {Lesson} from '../models/lesson.model';
+import {FetchMode} from '../models/fetch-mode.enum'; // Ensure your environment file has the API URL
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,15 @@ export class WordTranslationService {
 
   constructor(private http: HttpClient) { }
 
-  getAllTranslations(): Observable<WordTranslation[]> {
-    return this.http.get<WordTranslation[]>(this.apiUrl)
+  getAllTranslations(filterBy: FetchMode, numberOfLessons: number): Observable<WordTranslation[]> {
+    let params = new HttpParams();
+
+    if (filterBy == FetchMode.LATEST_LESSONS) {
+      params = params.set('filterBy', 'latestLesson');
+      params = params.set('numberOfLessons', numberOfLessons.toString());
+    }
+
+    return this.http.get<WordTranslation[]>(this.apiUrl, { params })
       .pipe(
         catchError(this.handleError<WordTranslation[]>('getAllTranslations', []))
       );
