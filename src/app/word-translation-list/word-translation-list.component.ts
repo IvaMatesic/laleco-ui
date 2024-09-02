@@ -34,6 +34,7 @@ export class WordTranslationListComponent {
   areTranslationsFetched = signal(false);
   showSecondPart = signal(false);
   numberOfLessons= signal(1);
+  showFetchAgain = signal(false);
 
   protected readonly TranslationMode = TranslationMode;
 
@@ -44,8 +45,15 @@ export class WordTranslationListComponent {
     this.wordTranslationService.getAllTranslations(this.selectedFetchMode(), this.numberOfLessons()).subscribe(response => {
       this.translationList.set(response)
       this.displayedList.set(this.translationList().slice(0, 1));
-      this.areTranslationsFetched.set(true);
+      this.resetVariables();
     })
+  }
+
+  resetVariables(){
+    this.areTranslationsFetched.set(true);
+    this.showFetchAgain.set(false);
+    this.currentWordIndex.set(1);
+    this.isLastWord.set(false);
   }
 
   @HostListener('window:keydown', ['$event'])
@@ -81,9 +89,11 @@ export class WordTranslationListComponent {
 
   changeFetchMode(fetchMode: FetchMode) {
     this.selectedFetchMode.set(fetchMode);
+    this.showFetchAgain.set(true);
   }
 
   changeNumberOfLessons(numberOfLessons: number) {
     this.numberOfLessons.set(numberOfLessons);
+    this.showFetchAgain.set(true);
   }
 }

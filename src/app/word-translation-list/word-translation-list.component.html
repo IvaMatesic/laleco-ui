@@ -5,39 +5,45 @@
                            (translationModeChanged)="changeTranslationMode($event)"
                            (numberOfLessonsChanged)="changeNumberOfLessons($event)"
   />
-
-  @if (isLastWord()) {
-    <p class="section-spacing text-secondary-dark">No more available translations.</p>
-  }
-
-  @if (!areTranslationsFetched()) {
+  @if (showFetchAgain()) {
     <button (click)="fetchTranslationsClicked()" class="section-spacing btn btn-primary">
-      Fetch translations
+      Refresh results
     </button>
   } @else {
-    <div class="fixed-bottom-div bottom-20 h-20 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
-    <div class="fixed-bottom-div bottom-0 h-20 bg-white"></div>
-    <button [disabled]="isLastWord()" (click)="handleNextClick()"
-            class="btn btn-primary btn-fixed-bottom btn-mobile-large px-8 py-4 disabled:btn-primary-disabled">
-      Next
-    </button>
-  }
 
-  <div class="section-spacing mx-auto flex justify-center xs:p-3 mb-32">
-    <div class="w-section">
-      @for (item of displayedList(); track item.id; let first = $first) {
-        <app-single-word-translation-view
-          [wordTranslation]="item"
-          [selectedMode]="selectedTranslateMode()"
-          [isCurrentWord]="first"
-          [showSecondPart]="showSecondPart()"
-        />
-      } @empty {
-        @if (areTranslationsFetched()) {
-          <p>No translations available at this time. Try to first upload some translations.</p>
+    @if (isLastWord()) {
+      <p class="section-spacing text-secondary-dark">No more available translations.</p>
+    }
+
+    @if (!areTranslationsFetched()) {
+      <button (click)="fetchTranslationsClicked()" class="section-spacing btn btn-primary">
+        Fetch translations
+      </button>
+    } @else {
+      <div class="fixed-bottom-div bottom-20 h-20 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
+      <div class="fixed-bottom-div bottom-0 h-20 bg-white"></div>
+      <button [disabled]="isLastWord()" (click)="handleNextClick()"
+              class="btn btn-primary btn-fixed-bottom btn-mobile-large px-8 py-4 disabled:btn-primary-disabled">
+        Next
+      </button>
+    }
+
+    <div class="section-spacing mx-auto flex justify-center xs:p-3 mb-32">
+      <div class="w-section">
+        @for (item of displayedList(); track item.id; let first = $first) {
+          <app-single-word-translation-view
+            [wordTranslation]="item"
+            [selectedMode]="selectedTranslateMode()"
+            [isCurrentWord]="first"
+            [showSecondPart]="showSecondPart()"
+          />
+        } @empty {
+          @if (areTranslationsFetched()) {
+            <p>No translations available at this time. Try to first upload some translations.</p>
+          }
         }
-      }
+      </div>
     </div>
-  </div>
+  }
 </div>
 
