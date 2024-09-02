@@ -84,6 +84,10 @@
     @apply border border-primary rounded-md p-2 w-full
   }
 
+  input:focus-visible, textarea:focus-visible{
+    @apply border border-secondary rounded-md p-2 w-full outline-none drop-shadow-md
+  }
+
   .input-div{
     @apply flex flex-col space-y-2 text-start mt-5
   }
