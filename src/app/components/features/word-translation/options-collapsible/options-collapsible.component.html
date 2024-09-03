@@ -20,7 +20,7 @@
             [ngClass]="{
               'btn-primary-outline': translationModeInput() === TranslationMode.TRANSLATION_TO_FOREIGN_WORD
             }"
-            class="btn text-center"
+            class="btn text-center filter-btn"
           >
             English -> German
           </button>
@@ -30,7 +30,7 @@
                       [ngClass]="{
               'btn-primary-outline': translationModeInput() === TranslationMode.FOREIGN_WORD_TO_TRANSLATION
             }"
-                      class="btn text-center"
+                      class="btn text-center filter-btn"
               >
                 German -> English
               </button>
@@ -43,22 +43,21 @@
                   [ngClass]="{
               'btn-primary-outline': fetchModeInput() === FetchMode.ALL
             }"
-                  class="btn text-center"
+                  class="btn text-center filter-btn"
           >
             All
           </button>
         </div>
-        <div class="col-span-1 flex space-x-2">
-          <div class="col-span-1 flex space-x-2">
-            <button (click)="fetchModeChanged.emit(FetchMode.LATEST_LESSONS)"
-                    [ngClass]="{
+        <div class="filter-option">
+          <button (click)="fetchModeChanged.emit(FetchMode.LATEST_LESSONS)"
+                  [ngClass]="{
               'btn-primary-outline': fetchModeInput() === FetchMode.LATEST_LESSONS
             }"
-                    class="btn text-center"
-            >
-              Latest lessons
-            </button>
-          </div>
+                  class="btn text-center filter-btn"
+          >
+            Latest lessons
+
+          </button>
         </div>
       </div>
       @if(fetchModeInput()==FetchMode.LATEST_LESSONS){

@@ -1,6 +1,6 @@
 import {Component, input} from '@angular/core';
-import {WordTranslation} from '../models/word-translation.model';
-import {TranslationMode} from '../models/translation-mode.enum';
+import {WordTranslation} from '../../../../models/word-translation.model';
+import {TranslationMode} from '../../../../models/translation-mode.enum';
 import {CommonModule, NgClass} from '@angular/common';
 
 @Component({
@@ -9,8 +9,7 @@ import {CommonModule, NgClass} from '@angular/common';
   imports: [
     NgClass, CommonModule
   ],
-  templateUrl: './single-word-translation-view.component.html',
-  styleUrl: './single-word-translation-view.component.css'
+  templateUrl: './single-word-translation-view.component.html'
 })
 export class SingleWordTranslationViewComponent {
   wordTranslation = input<WordTranslation>();

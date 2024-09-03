@@ -1,13 +1,12 @@
 import {Component, signal} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {WordTranslationService} from '../services/word-translation.service';
+import {WordTranslationService} from '../../../../services/word-translation.service';
 
 @Component({
   selector: 'app-bulk-create-word-translations',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: './bulk-create-word-translations.component.html',
-  styleUrl: './bulk-create-word-translations.component.css'
+  templateUrl: './bulk-create-word-translations.component.html'
 })
 export class BulkCreateWordTranslationsComponent {
 

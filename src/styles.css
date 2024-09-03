@@ -41,11 +41,15 @@
   }
 
   .btn {
-    @apply inline-block px-4 py-3 xs:px-5 xs:py-3  md:px-3 md:py-1 rounded-md
+    @apply inline-block px-4 py-3 xs:px-5 xs:py-3  md:px-3 md:py-1 rounded-md drop-shadow-lg
   }
 
   .btn-primary {
     @apply bg-primary text-white
+  }
+
+  .btn-primary:hover {
+    @apply bg-primary-hover
   }
 
   .btn-primary-disabled{
@@ -76,12 +80,20 @@
     @apply border border-primary rounded-md p-2 w-full
   }
 
+  input:focus-visible, textarea:focus-visible{
+    @apply border border-secondary rounded-md p-2 w-full outline-none drop-shadow-md
+  }
+
   .input-div{
     @apply flex flex-col space-y-2 text-start mt-5
   }
 
   .filter-option{
     @apply col-span-1 flex space-x-2 justify-center
+  }
+
+  .filter-btn:hover{
+    @apply border border-primary-disabled drop-shadow-md
   }
 
   .filter-row{

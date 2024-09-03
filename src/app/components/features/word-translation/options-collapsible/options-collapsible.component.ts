@@ -2,9 +2,9 @@ import {Component, input, output, signal} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {faChevronDown, faChevronUp} from '@fortawesome/free-solid-svg-icons';
-import {TranslationMode} from '../models/translation-mode.enum';
+import {TranslationMode} from '../../../../models/translation-mode.enum';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {FetchMode} from '../models/fetch-mode.enum';
+import {FetchMode} from '../../../../models/fetch-mode.enum';
 
 @Component({
   selector: 'app-options-collapsible',
