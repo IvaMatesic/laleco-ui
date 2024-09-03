@@ -41,11 +41,7 @@
   }
 
   .btn {
-    @apply inline-block px-4 py-3 xs:px-5 xs:py-3  md:px-3 md:py-1 rounded-md
-  }
-
-  .btn {
-    @apply drop-shadow-lg
+    @apply inline-block px-4 py-3 xs:px-5 xs:py-3  md:px-3 md:py-1 rounded-md drop-shadow-lg
   }
 
   .btn-primary {
@@ -107,7 +103,6 @@
   .filter-title{
     @apply col-span-2 sm:col-span-1 justify-self-start mb-2
   }
-
 
   .hidden-mobile{
     @apply hidden sm:block
