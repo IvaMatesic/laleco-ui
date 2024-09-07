@@ -6,6 +6,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 If you are interested in future development and improvements you can check [this document](https://docs.google.com/document/d/1aLhBvf_6QBomgpJvhJjOIfKzRqpLalGMyi0LJQIBZpM/edit?usp=sharing).
 
+You can also check out the [Figma design](https://www.figma.com/design/64X1mTdOfsDLxrsacgHz24/Laleco?node-id=0-1&m=dev&t=iYxFFkTQiQ8epgvs-1) I made for this app.
+
 # Setup instructions
 ### Prerequisites
 
