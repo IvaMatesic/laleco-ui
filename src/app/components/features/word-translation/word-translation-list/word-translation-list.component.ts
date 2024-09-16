@@ -32,7 +32,7 @@ export class WordTranslationListComponent {
   isLastWord = signal(false);
   areTranslationsFetched = signal(false);
   showSecondPart = signal(false);
-  numberOfLessons= signal(1);
+  numberOfLessons = signal(1);
   showFetchAgain = signal(false);
 
   protected readonly TranslationMode = TranslationMode;
@@ -42,17 +42,22 @@ export class WordTranslationListComponent {
 
   fetchTranslationsClicked() {
     this.wordTranslationService.getAllTranslations(this.selectedFetchMode(), this.numberOfLessons()).subscribe(response => {
-      this.translationList.set(response)
-      this.displayedList.set(this.translationList().slice(0, 1));
-      this.resetVariables();
+      this.setListsWithNewData(response);
     })
   }
 
-  resetVariables(){
+  setListsWithNewData(data: WordTranslation[]) {
+    this.translationList.set(data)
+    this.displayedList.set(this.translationList().slice(0, 1));
+    this.resetVariables();
+  }
+
+  resetVariables() {
     this.areTranslationsFetched.set(true);
     this.showFetchAgain.set(false);
     this.currentWordIndex.set(1);
     this.isLastWord.set(false);
+    this.showSecondPart.set(false);
   }
 
   @HostListener('window:keydown', ['$event'])
@@ -82,7 +87,7 @@ export class WordTranslationListComponent {
       this.showSecondPart.set(true);
   }
 
-  changeTranslationMode(mode: TranslationMode){
+  changeTranslationMode(mode: TranslationMode) {
     this.selectedTranslateMode.set(mode);
   }
 
@@ -94,5 +99,18 @@ export class WordTranslationListComponent {
   changeNumberOfLessons(numberOfLessons: number) {
     this.numberOfLessons.set(numberOfLessons);
     this.showFetchAgain.set(true);
+  }
+
+  handleRepeatClick() {
+    this.setListsWithNewData(this.shuffleArray(this.displayedList()))
+  }
+
+
+  shuffleArray(array: any[]): any[] {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
   }
 }
