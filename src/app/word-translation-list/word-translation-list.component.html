@@ -22,10 +22,16 @@
     } @else {
       <div class="fixed-bottom-div bottom-20 h-20 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
       <div class="fixed-bottom-div bottom-0 h-20 bg-white"></div>
-      <button [disabled]="isLastWord()" (click)="handleNextClick()"
-              class="btn btn-primary btn-fixed-bottom btn-mobile-large px-8 py-4 disabled:btn-primary-disabled">
-        Next
-      </button>
+      <div class="fixed bottom-0 left-0 w-full p-4 flex justify-center space-x-8">
+        <button [disabled]="isLastWord()" (click)="handleNextClick()"
+                class="btn btn-primary btn-mobile-large px-8 py-4 disabled:btn-primary-disabled">
+          Next
+        </button>
+        <button (click)="handleRepeatClick()"
+                class="btn btn-primary-outline btn-mobile-large px-8 py-4">
+          Repeat
+        </button>
+      </div>
     }
 
     <div class="section-spacing mx-auto flex justify-center xs:p-3 mb-32">
