@@ -1,7 +1,8 @@
-import {Component, input} from '@angular/core';
+import {Component, input, output} from '@angular/core';
 import {WordTranslation} from '../../../../models/word-translation.model';
 import {TranslationMode} from '../../../../models/translation-mode.enum';
 import {CommonModule, NgClass} from '@angular/common';
+import {HardWord} from '../../../../models/hard-word.model';
 
 @Component({
   selector: 'app-single-word-translation-view',
@@ -17,5 +18,8 @@ export class SingleWordTranslationViewComponent {
   isCurrentWord = input<boolean>(true);
   protected readonly TranslationMode = TranslationMode;
   showSecondPart = input(false);
+  isWordUpdated= input<HardWord|undefined>();
+  isHardWordOld= input(false);
+  wordClicked= output<WordTranslation|undefined>();
 
 }

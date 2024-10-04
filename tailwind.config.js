@@ -18,9 +18,12 @@ module.exports = {
         },
         secondary: {
           DEFAULT: '#A5668B',
+          hover: '#c05e93',
+          disabled: '#bda0b3',
           light: '#D3BCC0',
           dark: '#6B2D5C',
         },
+        disabled:'#f3f3f3',
         accent: '#FF5376',  // Single custom color (no shades)
       },
     },

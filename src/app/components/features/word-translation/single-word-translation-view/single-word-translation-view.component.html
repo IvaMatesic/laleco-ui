@@ -1,10 +1,19 @@
 
-<div class="grid grid-cols-2 gap-4 w-full" [ngClass]="isCurrentWord() ? 'border-b-2 border-secondary-500' : 'text-primary-dark'">
+<div class="grid grid-cols-2 gap-4 w-full"
+     (click)="wordClicked.emit(wordTranslation())"
+     [ngClass]="{
+  'border-b-2 border-secondary-500': isCurrentWord(),
+  'hard-word-old': wordTranslation()?.hard && !isWordUpdated(),
+  'hard-word-updated': isWordUpdated()?.hard || (isCurrentWord() && wordTranslation()?.hard && !isWordUpdated()),
+  'text-primary-dark': !isCurrentWord() && !(isWordUpdated() || wordTranslation()?.hard),
+  'bg-disabled': isWordUpdated()
+}"
+>
   @if(selectedMode() == TranslationMode.TRANSLATION_TO_FOREIGN_WORD){
-  <div class="py-2 px-4 text-start" >
+  <div class="py-2 px-4 text-start"  (click)="wordClicked.emit(wordTranslation())">
     {{ wordTranslation()?.translation }}
   </div>
-  <div class="py-2 px-4 text-start" *ngIf="showSecondPart() || !isCurrentWord()">
+  <div class="py-2 px-4 text-start" *ngIf="showSecondPart() || !isCurrentWord()"  (click)="wordClicked.emit(wordTranslation())">
     {{ wordTranslation()?.word }}
   </div>
   }

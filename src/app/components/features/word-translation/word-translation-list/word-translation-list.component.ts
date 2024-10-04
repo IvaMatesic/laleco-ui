@@ -9,6 +9,8 @@ import {TranslationMode} from '../../../../models/translation-mode.enum';
 import {CommonModule, SlicePipe} from '@angular/common';
 import {OptionsCollapsibleComponent} from '../options-collapsible/options-collapsible.component';
 import {FetchMode} from '../../../../models/fetch-mode.enum';
+import {HardWord} from '../../../../models/hard-word.model';
+import {FilterByIdPipe} from '../../../../pipes/filter-by-id.pipe';
 
 @Component({
   selector: 'app-word-translation-list',
@@ -18,7 +20,8 @@ import {FetchMode} from '../../../../models/fetch-mode.enum';
     FormsModule,
     SlicePipe,
     CommonModule,
-    OptionsCollapsibleComponent
+    OptionsCollapsibleComponent,
+    FilterByIdPipe
   ],
   templateUrl: './word-translation-list.component.html'
 })
@@ -27,13 +30,14 @@ export class WordTranslationListComponent {
   translationList = signal<WordTranslation[]>([]);
   displayedList = signal<WordTranslation[]>([]);
   selectedTranslateMode = signal<TranslationMode>(TranslationMode.TRANSLATION_TO_FOREIGN_WORD);
-  selectedFetchMode = signal<FetchMode>(FetchMode.ALL);
+  selectedFetchMode = signal<FetchMode>(FetchMode.LATEST_LESSONS);
   currentWordIndex = signal(1);
   isLastWord = signal(false);
   areTranslationsFetched = signal(false);
   showSecondPart = signal(false);
   numberOfLessons = signal(1);
   showFetchAgain = signal(false);
+  changedHardWords = signal<HardWord[]>([]);
 
   protected readonly TranslationMode = TranslationMode;
 
@@ -105,12 +109,33 @@ export class WordTranslationListComponent {
     this.setListsWithNewData(this.shuffleArray(this.displayedList()))
   }
 
-
   shuffleArray(array: any[]): any[] {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
+  }
+
+  saveHardWords(){
+    this.wordTranslationService.saveHardWords(this.changedHardWords()).subscribe(response => {
+      console.log('Hard words updated', response);
+    });
+  }
+
+  changeHardWordsFunction(word: WordTranslation | undefined) {
+    if (word != undefined) {
+      const exists = this.changedHardWords().some(item => item.id === word.id);
+      console.log({id: word.id, hard: !word.hard})
+      if (exists) {
+        this.changedHardWords.update(values => {
+          return [...values.filter(item => item.id !== word.id)];
+        });
+      } else {
+        this.changedHardWords.update(values => {
+          return [...values, {id: word.id, hard: !word.hard}];
+        });
+      }
+    }
   }
 }

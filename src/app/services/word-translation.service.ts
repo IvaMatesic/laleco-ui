@@ -6,7 +6,8 @@ import {WordTranslation} from '../models/word-translation.model'; // Assume you 
 import {environment} from '../../environments/environment.development';
 import {LessonRequest} from '../models/lesson-request.model';
 import {Lesson} from '../models/lesson.model';
-import {FetchMode} from '../models/fetch-mode.enum'; // Ensure your environment file has the API URL
+import {FetchMode} from '../models/fetch-mode.enum';
+import {HardWord} from '../models/hard-word.model'; // Ensure your environment file has the API URL
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +43,16 @@ export class WordTranslationService {
     return this.http.post<Lesson>(`${this.apiUrl}/create/bulk`, data, { headers })
       .pipe(
          catchError(this.handleError<string>('createWordTranslations'))
+      );
+  }
+
+  saveHardWords(hardWords: HardWord[]) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json'});
+    console.log('save hard words called')
+    console.log(hardWords)
+    return this.http.put<HardWord[]>(`${this.apiUrl}/set-hard`, hardWords, { headers })
+      .pipe(
+        catchError(this.handleError<string>('saveHardWords'))
       );
   }
 

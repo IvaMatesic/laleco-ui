@@ -64,6 +64,26 @@
     @apply border-primary-disabled text-primary-disabled
   }
 
+  .btn-secondary {
+    @apply bg-secondary text-white
+  }
+
+  .btn-secondary:hover {
+    @apply bg-secondary-hover
+  }
+
+  .btn-secondary-disabled{
+    @apply bg-secondary-disabled
+  }
+
+  .btn-secondary-outline {
+    @apply border border-secondary text-secondary
+  }
+
+  .btn-secondary-outline-disabled{
+    @apply border border-secondary-disabled text-secondary-disabled bg-disabled
+  }
+
   .section-spacing{
     @apply mt-6 md:mt-8 lg:mt-10
   }
@@ -111,4 +131,13 @@
   .hidden-mobile{
     @apply hidden sm:block
   }
+
+  .hard-word-old{
+    @apply  text-secondary-disabled;
+  }
+
+  .hard-word-updated{
+    @apply text-secondary-dark;
+  }
+
 }
