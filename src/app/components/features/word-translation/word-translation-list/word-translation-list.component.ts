@@ -107,6 +107,7 @@ export class WordTranslationListComponent {
 
   handleRepeatClick() {
     this.setListsWithNewData(this.shuffleArray(this.displayedList()))
+    this.changedHardWords.set([]);
   }
 
   shuffleArray(array: any[]): any[] {
@@ -121,6 +122,15 @@ export class WordTranslationListComponent {
     this.wordTranslationService.saveHardWords(this.changedHardWords()).subscribe(response => {
       console.log('Hard words updated', response);
     });
+    this.updateWordListWithNewHardWords();
+  }
+
+  updateWordListWithNewHardWords(){
+    for (let i = 0; i < this.changedHardWords().length; i++) {
+      let id = this.changedHardWords()[i].id;
+      this.translationList().filter(word => word.id == id)[0].hard = this.changedHardWords()[i].hard;
+    }
+    this.changedHardWords.set([]);
   }
 
   changeHardWordsFunction(word: WordTranslation | undefined) {
