@@ -136,7 +136,6 @@ export class WordTranslationListComponent {
   changeHardWordsFunction(word: WordTranslation | undefined) {
     if (word != undefined) {
       const exists = this.changedHardWords().some(item => item.id === word.id);
-      console.log({id: word.id, hard: !word.hard})
       if (exists) {
         this.changedHardWords.update(values => {
           return [...values.filter(item => item.id !== word.id)];

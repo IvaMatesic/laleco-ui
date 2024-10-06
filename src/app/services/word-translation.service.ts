@@ -48,8 +48,6 @@ export class WordTranslationService {
 
   saveHardWords(hardWords: HardWord[]) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json'});
-    console.log('save hard words called')
-    console.log(hardWords)
     return this.http.put<HardWord[]>(`${this.apiUrl}/set-hard`, hardWords, { headers })
       .pipe(
         catchError(this.handleError<string>('saveHardWords'))
