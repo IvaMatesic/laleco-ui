@@ -23,13 +23,17 @@
       <div class="fixed-bottom-div bottom-20 h-20 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
       <div class="fixed-bottom-div bottom-0 h-20 bg-white"></div>
       <div class="fixed bottom-0 left-0 w-full p-4 flex justify-center space-x-8">
-        <button [disabled]="isLastWord()" (click)="handleNextClick()"
-                class="btn btn-primary btn-mobile-large px-8 py-4 disabled:btn-primary-disabled">
-          Next
-        </button>
         <button (click)="handleRepeatClick()"
                 class="btn btn-primary-outline btn-mobile-large px-8 py-4">
-          Repeat
+          Repeat words
+        </button>
+        <button [disabled]="isLastWord()" (click)="handleNextClick()"
+                class="btn btn-primary btn-mobile-large px-8 py-4 disabled:btn-primary-disabled">
+          Next word
+        </button>
+        <button [disabled]="changedHardWords().length<1" (click)="saveHardWords()"
+                class="btn btn-secondary-outline btn-mobile-large px-8 py-4 disabled:btn-secondary-outline-disabled">
+          Save hard words
         </button>
       </div>
     }
@@ -37,12 +41,17 @@
     <div class="section-spacing mx-auto flex justify-center xs:p-3 mb-32">
       <div class="w-section">
         @for (item of displayedList(); track item.id; let first = $first) {
+          <div (click)="changeHardWordsFunction(item)">
+
           <app-single-word-translation-view
             [wordTranslation]="item"
             [selectedMode]="selectedTranslateMode()"
             [isCurrentWord]="first"
             [showSecondPart]="showSecondPart()"
+            [isWordUpdated]="(changedHardWords() | filterById:item.id)[0]"
+            [isHardWordOld]="item.hard"
           />
+          </div>
         } @empty {
           @if (areTranslationsFetched()) {
             <p>No translations available at this time. Try to first upload some translations.</p>
