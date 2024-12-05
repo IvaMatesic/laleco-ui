@@ -37,7 +37,7 @@
         </div>
       </div>
       <div class="filter-row">
-        <p class="col-span-2 sm:col-span-1 justify-self-start hidden sm:block mb-2">Words to fetch:</p>
+        <p class="col-span-3 sm:col-span-1 justify-self-start hidden sm:block mb-2">Words to fetch:</p>
         <div class="filter-option">
           <button (click)="fetchModeChanged.emit(FetchMode.ALL)"
                   [ngClass]="{
@@ -57,6 +57,16 @@
           >
             Latest lessons
 
+          </button>
+        </div>
+        <div class="filter-option">
+          <button (click)="fetchModeChanged.emit(FetchMode.HARD_WORDS)"
+                  [ngClass]="{
+              'btn-primary-outline': fetchModeInput() === FetchMode.HARD_WORDS
+            }"
+                  class="btn text-center filter-btn"
+          >
+            Hard words
           </button>
         </div>
       </div>

@@ -1,4 +1,5 @@
 export enum FetchMode{
   ALL,
-  LATEST_LESSONS
+  LATEST_LESSONS,
+  HARD_WORDS
 }
