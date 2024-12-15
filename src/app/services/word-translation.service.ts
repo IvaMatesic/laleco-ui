@@ -24,6 +24,9 @@ export class WordTranslationService {
       params = params.set('filterBy', 'latestLesson');
       params = params.set('numberOfLessons', numberOfLessons.toString());
     }
+    else if(filterBy == FetchMode.HARD_WORDS){
+      params = params.set('filterBy', 'hardWords');
+    }
 
     return this.http.get<WordTranslation[]>(this.apiUrl, { params })
       .pipe(
