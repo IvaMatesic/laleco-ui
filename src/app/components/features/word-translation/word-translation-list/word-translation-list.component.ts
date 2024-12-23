@@ -30,7 +30,7 @@ export class WordTranslationListComponent {
   translationList = signal<WordTranslation[]>([]);
   displayedList = signal<WordTranslation[]>([]);
   selectedTranslateMode = signal<TranslationMode>(TranslationMode.TRANSLATION_TO_FOREIGN_WORD);
-  selectedFetchMode = signal<FetchMode>(FetchMode.LATEST_LESSONS);
+  selectedFetchMode = signal<FetchMode>(FetchMode.ALL);
   currentWordIndex = signal(1);
   isLastWord = signal(false);
   areTranslationsFetched = signal(false);
@@ -72,6 +72,10 @@ export class WordTranslationListComponent {
     if (event.key === 'ArrowRight') {
       this.handleNextClick()
     }
+    if (event.key === '1') this.reviewWord(1);
+    if (event.key === '2') this.reviewWord(2);
+    if (event.key === '3') this.reviewWord(3);
+    if (event.key === '4') this.reviewWord(4);
   }
 
   goToNextWord() {
@@ -82,6 +86,12 @@ export class WordTranslationListComponent {
     } else {
       this.isLastWord.set(true);
     }
+  }
+
+  reviewWord(difficulty: number): void {
+    const wordId = this.displayedList()[0].id;
+    this.wordTranslationService.scheduleWordUpdate(wordId, difficulty);
+    this.handleNextClick();
   }
 
   handleNextClick() {
