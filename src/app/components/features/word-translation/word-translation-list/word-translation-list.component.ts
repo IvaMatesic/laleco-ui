@@ -89,8 +89,8 @@ export class WordTranslationListComponent {
   }
 
   reviewWord(difficulty: number): void {
-    const wordId = this.displayedList()[0].id;
-    this.wordTranslationService.scheduleWordUpdate(wordId, difficulty);
+    const currentWordId = this.displayedList()[0].id;
+    this.wordTranslationService.scheduleWordUpdate(currentWordId, difficulty);
     this.handleNextClick();
   }
 

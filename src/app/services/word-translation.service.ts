@@ -19,10 +19,8 @@ export class WordTranslationService {
   private updateQueue: WordDifficulty[] = [];
 
   constructor(private http: HttpClient) {
-    this.updateSubject.pipe(debounceTime(20000)).subscribe(() => {
+    this.updateSubject.pipe(debounceTime(10000)).subscribe(() => {
       if (this.updateQueue.length > 0) {
-        console.log('update queue')
-        console.log(this.updateQueue)
         this.http.post(this.apiUrl+'/update-review', this.updateQueue).subscribe();
         this.updateQueue = [];
       }
