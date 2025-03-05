@@ -20,7 +20,7 @@ export class OptionsCollapsibleComponent {
   protected readonly TranslationMode = TranslationMode;
   protected readonly FetchMode = FetchMode;
   translationModeInput = input<TranslationMode>(TranslationMode.TRANSLATION_TO_FOREIGN_WORD);
-  fetchModeInput = input<FetchMode>(FetchMode.LATEST_LESSONS);
+  fetchModeInput = input<FetchMode>(FetchMode.ALL);
   translationModeChanged = output<TranslationMode>();
   fetchModeChanged = output<FetchMode>();
   numberOfLessonsChanged = output<number>();
