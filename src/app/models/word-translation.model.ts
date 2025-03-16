@@ -3,4 +3,5 @@ export interface WordTranslation{
   translation: string;
   word: string;
   hard: boolean;
+  exampleSentence: string;
 }
